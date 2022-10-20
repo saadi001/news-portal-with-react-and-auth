@@ -3,7 +3,7 @@ import React from 'react';
 const Category = () => {
      return (
           <div>
-               this is category page
+               this is category
           </div>
      );
 };
