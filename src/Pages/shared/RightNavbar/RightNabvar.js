@@ -8,8 +8,8 @@ const RightNabvar = () => {
      return (
           <div>
                <ButtonGroup className='w-100' vertical >
-                    <Button className='mb-2' variant="outline-primary">Button</Button>
-                    <Button variant="outline-dark">Button</Button>
+                    <Button className='mb-2' variant="outline-primary">Sign with google</Button>
+                    <Button variant="outline-dark">sign with github</Button>
                </ButtonGroup>
                <div className='mt-3'>
                     <h4>Find us on</h4>
