@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Carousel from 'react-bootstrap/Carousel';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const RightNabvar = () => {
+     const {providerLogin} = useContext(AuthContext);
+     const googleProvider = new  GoogleAuthProvider();
+
+     const handleGoogleSignin = ()=>{
+          providerLogin(googleProvider)
+          .then(result => {
+               const user = result.user;
+               console.log(user)
+          })
+          .catch(error => console.error(error))
+     }
      return (
           <div>
                <ButtonGroup className='w-100' vertical >
-                    <Button className='mb-2' variant="outline-primary">Sign with google</Button>
+                    <Button onClick={handleGoogleSignin} className='mb-2' variant="outline-primary">Sign with google</Button>
                     <Button variant="outline-dark">sign with github</Button>
                </ButtonGroup>
                <div className='mt-3'>

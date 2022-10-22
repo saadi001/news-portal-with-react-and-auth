@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import LeftNavbar from '../LeftNavbar/LeftNavbar';
+import {FaUserAlt} from 'react-icons/fa';
+import Image from 'react-bootstrap/Image'
+import { Button } from 'react-bootstrap';
 
 const Header = () => {
+     const {user, logOut} = useContext(AuthContext);
+
+     const handleLogOut = () =>{
+          logOut();
+     }
      return (
           <Navbar className='mb-3' collapseOnSelect expand="lg" bg="dark" variant="dark">
                <Container>
@@ -28,10 +37,26 @@ const Header = () => {
                                    </NavDropdown.Item>
                               </NavDropdown>
                          </Nav>
-                         <Nav>
-                              <Nav.Link href="#deets">More deets</Nav.Link>
-                              <Nav.Link eventKey={2} href="#memes">
-                                   Dank memes
+                         <Nav className='d-flex align-items-center'>
+                              <Nav.Link >                                   
+                                        {
+                                             user?.uid ?
+                                             <span>{user?.displayName}</span>
+                                             : <>
+                                                  <Link className='ms-3 text-decoration-none text-white-50 hover:text-white' to='login'>Login</Link>
+                                                  <Link className='ms-3 text-decoration-none text-white-50 hover:text-white' to='register'>Register</Link>
+                                             </>
+                                        }
+
+                              </Nav.Link>
+                              <Nav.Link eventKey={2}>
+                                   { user?.uid ? 
+                                        <>
+                                        <Image style={{height:'30px'}} roundedCircle src={user?.photoURL}></Image>                                        
+                                        <Button onClick={handleLogOut} variant='danger' className='px-2 py-1 ms-3'>sign out</Button>
+                                        </>
+                                        : <FaUserAlt></FaUserAlt>
+                              }
                               </Nav.Link>
                          </Nav>
                          <div className='d-lg-none'>
