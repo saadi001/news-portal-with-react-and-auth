@@ -19,7 +19,7 @@ const Register = () => {
           .then(res => {
                const usr = res.user;
                form.reset();
-               setUser(name)
+               setUser(name);
                console.log(user);
           })
           .catch(e => console.error(e))

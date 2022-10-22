@@ -17,7 +17,7 @@ const Header = () => {
           logOut();
      }
      return (
-          <Navbar className='mb-3' collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar sticky='top' className='mb-3' collapseOnSelect expand="lg" bg="dark" variant="dark">
                <Container>
                     <Navbar.Brand><Link className='text-decoration-none text-white' to='/'>News portal</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />

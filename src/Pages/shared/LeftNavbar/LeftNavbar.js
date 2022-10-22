@@ -11,7 +11,7 @@ const LeftNavbar = () => {
           
      },[])
      return (
-          <div>
+          <div >
                <h4 className='text-primary'>Categories: {categories.length}</h4>
                {
                     categories.map(category => <p key={category.id}>
