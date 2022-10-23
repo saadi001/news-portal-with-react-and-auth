@@ -14,8 +14,8 @@ const LeftNavbar = () => {
           <div >
                <h4 className='text-primary'>Categories: {categories.length}</h4>
                {
-                    categories.map(category => <p key={category.id}>
-                         <Link to={`category/${category.id}`}>{category.name}</Link>
+                    categories.map(category => <p  key={category.id}>
+                         <Link className='text-decoration-none' to={`category/${category.id}`}>{category.name}</Link>
                     </p>)
                }
           </div>

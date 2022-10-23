@@ -1,10 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
+     const [error, setError] = useState('') ;
      const {signIn} = useContext(AuthContext);
+     const navigate = useNavigate();
+     const location = useLocation();
+
+     const from = location.state?.from?.pathname || '/';
 
      const handlaForm = (e) =>{
           e.preventDefault();
@@ -16,9 +22,14 @@ const Login = () => {
           .then(res =>{
                const user = res.user;
                form.reset();
+               setError('');
+               navigate(from, {replace: true});
                console.log(user);
           })
-          .catch(e => console.error(e));
+          .catch(e => {
+               console.error(e);
+               setError(e.message);
+          });
           
      }
      return (
@@ -32,10 +43,15 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name='password' type="password" placeholder="Password" required/>
                </Form.Group>
+
+               <Form.Text className='text-danger'>
+                    {error}
+               </Form.Text><br/>
                
                <Button variant="primary" type="submit">
                     Login
                </Button>
+               
           </Form>
      );
 };

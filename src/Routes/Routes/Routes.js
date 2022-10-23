@@ -5,6 +5,8 @@ import Login from "../../Pages/forms/Login";
 import Register from "../../Pages/forms/Register";
 import Home from "../../Pages/Home/Home";
 import News from "../../Pages/News/News";
+import TermsAndCondition from "../../Pages/Others/termsAndCondition/TermsAndCondition";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
      {path:'/', element: <Main></Main>, children:[
@@ -18,7 +20,7 @@ export const router = createBrowserRouter([
                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
           },
           {
-               path: '/news/:id', element: <News></News>,
+               path: '/news/:id', element: <PrivateRoute><News></News></PrivateRoute>,
                loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
           },
           {
@@ -26,6 +28,9 @@ export const router = createBrowserRouter([
           },
           {
                path: '/register', element: <Register></Register>
+          },
+          {
+               path: '/terms', element:<TermsAndCondition></TermsAndCondition>
           }
      ]},
      {path: '*', element: <div className="text-center">404! Not Found</div>}
